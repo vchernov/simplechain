@@ -16,8 +16,9 @@ def read_from_file(filename):
                 if block and verify_next(block):
                     blockchain.append(block)
                 else:
-                    raise RuntimeError()
-    except (IOError, json.JSONDecodeError, RuntimeError):
+                    blockchain.clear()
+                    break
+    except (IOError, json.JSONDecodeError):
         pass
     if not blockchain:
         reset_blockchain()
